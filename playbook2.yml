@@ -1,0 +1,24 @@
+- name: configuring apache2
+  hosts: all
+  tasks:
+    - name : Install apache2
+      apt:
+        name: apache2
+        state: present
+    - name: Edit the index.xml file
+      copy:
+        content: "Intelliqt"
+        dest: /var/www/html/index.html
+    - name: restart apache2
+      service:
+        name: apache2
+        state: restarted
+    - name: check url response of tomcat9 on server1
+      uri:
+        url: http://172.31.38.234
+        status_code: 200
+    - name: check uri response of tomcat9 on server2
+      uri:
+        url: http://172.31.34.185
+        status_code: 200
+...

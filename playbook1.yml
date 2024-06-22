@@ -1,0 +1,14 @@
+---
+- name: create all users on all servers
+  hosts: all
+  tasks:
+    - name: create user
+      user:
+        name: rohith
+        password: intelliqit
+        home: /tmp/Uma
+        uid: 789
+        shell: /bin/bash
+        comment: "A normal user"
+...
+

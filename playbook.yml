@@ -1,0 +1,21 @@
+---
+- name: Install jenkins and Required software
+  hosts: 172.31.38.234
+  tasks:
+    - name: Install Jdk 
+      apt:
+        name: openjdk-11-jdk
+        state: present
+        update_cache: yes
+    - name: Install git
+      apt:
+        name: git
+        state: present
+    - name: Install maven
+      apt:
+        name: maven
+        state: present
+    - name: download jenkins.war
+      get_url:
+        url: https://get.jenkins.io/war-stable/2.452.2/jenkins.war
+        dest: /home/ubuntu
