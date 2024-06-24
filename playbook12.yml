@@ -1,0 +1,10 @@
+---
+- name: implementing loops
+  hosts: all
+  tasks:
+    - name: Install tree
+      apt:
+        name: ["apache2","git","maven"]
+        state: present
+        update_cache: no
+...
