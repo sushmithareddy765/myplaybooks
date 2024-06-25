@@ -1,0 +1,45 @@
+---
+- name: configuring apache2 on ubuntu servers
+  hosts: ubuntu
+  tasks:
+    - name : Install apache2
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes 
+    - name: Edit the index.xml file
+      copy:
+        content: "Intelliqt"
+        dest: /var/www/html/index.html
+    - name: restart apache2
+      service:
+        name: apache2
+        state: restarted
+    - name: check url response on all servers
+      uri:
+        url: "{{item}}"
+        status_code: 200
+      with_items:
+        - http://172.31.86.116
+        - http://172.31.87.203
+- name: configuring httpd on redhat
+  hosts: redhat
+  tasks:
+    - name : Install httpd
+      yum:
+        name: httpd
+        state: present
+        update_cache: yes
+    - name: Edit the index.xml file
+      copy:
+        content: "Intelliqt"
+        dest: /var/www/html/index.html
+    - name: restart httpd
+      service:
+        name: httpd
+        state: restarted
+    - name: check url response on htppd
+      uri:
+        url: http://172.31.93.203
+        status_code: 200
+...
