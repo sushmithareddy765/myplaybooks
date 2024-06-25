@@ -1,0 +1,16 @@
+---
+- name: delete if the file is executable
+  hosts: all
+  tasks:
+    - name: capture info abt that file
+      stat:
+        path: /tmp/file1
+      register: b
+    - name: dispaly output
+      debug:
+        var: b
+    - name: check for execute permissions
+      file:
+        name: /tmp/file1
+        state: absent
+      when: b.stat.executable == false

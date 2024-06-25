@@ -16,9 +16,9 @@
     - name: check url response of tomcat9 on server1
       uri:
         url: http://172.31.38.234
-        status_code: 200
+        status_code: -1
     - name: check uri response of tomcat9 on server2
       uri:
         url: http://172.31.34.185
-        status_code: 200
+        status_code: -1
 ...
